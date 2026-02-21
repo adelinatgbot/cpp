@@ -395,7 +395,7 @@
 //}
 
 
-//7 Удалить все положительные элементы, за которыми следуют четные.
+7 Удалить все положительные элементы, за которыми следуют четные.
 //#include <iostream>
 //using namespace std;
 //struct list
@@ -472,17 +472,26 @@
 //    list* beg = make_list();
 //    cout << "Исхоходный список:" << endl;
 //    print(beg);
-//    list* p = beg;
-//    while (p != NULL && p->next != NULL)
+//    list* r = beg, *p = NULL;
+//    if (beg->next != NULL)
+//        p = beg->next;
+//    if (r != NULL && p != NULL) {
+//        if (r->info > 0 && p->info % 2 == 0) {
+//            beg = r = p;
+//            p = p->next;
+//        }
+//    }
+//    while (p->next != NULL)
 //    {
 //        if (p->info > 0 && p->next->info % 2 == 0)
 //        {
-//            del(beg, p->info);
+//            r->next = p->next;
 //        }
 //        else
 //        {
-//            p = p->next;
+//            r = p;
 //        }
+//        p = p->next;
 //    }
 //    cout << "Новый список:" << endl;
 //    print(beg);
