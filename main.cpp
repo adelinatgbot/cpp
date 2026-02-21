@@ -1432,3 +1432,104 @@
 //    cout << "\nНовый список:" << endl;
 //    print(beg);
 //}
+#include <iostream>
+using namespace std;
+struct list
+{
+    int info;
+    list* next;
+};
+list* make_list()
+{
+    list* beg = new(list);
+    list* r, * p;
+    int x;
+    cin >> x;
+    beg->info = x;
+    p = beg;
+    while (x != 0)
+    {
+        cin >> x;
+        if (x != 0)
+        {
+            r = new(list);
+            r->info = x;
+            r->next = NULL;
+            p->next = r;
+            p = r;
+        }
+    }
+    return beg;
+}
+list* vst(list*& beg, int k, int z)
+{
+    list* p = beg;
+    list* r;
+    while (p != NULL)
+    {
+        if (p->info == k)
+        {
+            r = new(list);
+            r->info = z;
+            r->next = p->next;
+            p->next = r;
+            p = p->next;
+        }
+        else
+        {
+            p = p->next;
+        }
+    }
+    return beg;
+}
+void print(list* beg)
+{
+    list* p = beg;
+    while (p != NULL)
+    {
+        cout << "\nElement:" << p->info << " ";
+        p = p->next;
+    }
+}
+int findmin(list* beg)
+{
+    list* p = beg;
+    int m = p->info;
+    while (p != NULL)
+    {
+        if (p->info < m)
+            m = p->info;
+        p = p->next;
+    }
+    return m;
+}
+int sumdig(int x)
+{
+    int s = 0;
+    while (x != 0)
+    {
+        s += s % 10;
+        x /= 10;
+    }
+    return s;
+}
+int main()
+{
+    setlocale(LC_ALL, "RU");
+    list* beg = make_list();
+    list* p = beg;
+    int m = findmin(beg);
+    cout << "Старый список: " << endl;
+    print(beg);
+    while (p != NULL)
+    {
+        if (sumdig(p->info) % 2 == 0)
+        {
+            vst(beg, p->info, m);
+            p = p->next->next;
+        }
+        else p = p->next;
+    }
+    cout << "Новый список: " << endl;
+    print(beg);
+}
