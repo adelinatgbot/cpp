@@ -395,7 +395,7 @@
 //}
 
 
-7 Удалить все положительные элементы, за которыми следуют четные.
+//7 Удалить все положительные элементы, за которыми следуют четные.
 //#include <iostream>
 //using namespace std;
 //struct list
@@ -472,26 +472,17 @@
 //    list* beg = make_list();
 //    cout << "Исхоходный список:" << endl;
 //    print(beg);
-//    list* r = beg, *p = NULL;
-//    if (beg->next != NULL)
-//        p = beg->next;
-//    if (r != NULL && p != NULL) {
-//        if (r->info > 0 && p->info % 2 == 0) {
-//            beg = r = p;
-//            p = p->next;
-//        }
-//    }
-//    while (p->next != NULL)
+//    list* p = beg;
+//    while (p != NULL && p->next != NULL)
 //    {
 //        if (p->info > 0 && p->next->info % 2 == 0)
 //        {
-//            r->next = p->next;
+//            del(beg, p->info);
 //        }
 //        else
 //        {
-//            r = p;
+//            p = p->next;
 //        }
-//        p = p->next;
 //    }
 //    cout << "Новый список:" << endl;
 //    print(beg);
@@ -1383,7 +1374,7 @@
 //        if (p->info == k)
 //        {
 //            r = new(list);
-//            r->info = z;
+//            r->info = x;
 //            r->next = p->next;
 //            p->next = r;
 //            p = p->next;
@@ -1441,104 +1432,827 @@
 //    cout << "\nНовый список:" << endl;
 //    print(beg);
 //}
-#include <iostream>
-using namespace std;
-struct list
-{
-    int info;
-    list* next;
-};
-list* make_list()
-{
-    list* beg = new(list);
-    list* r, * p;
-    int x;
-    cin >> x;
-    beg->info = x;
-    p = beg;
-    while (x != 0)
-    {
-        cin >> x;
-        if (x != 0)
-        {
-            r = new(list);
-            r->info = x;
-            r->next = NULL;
-            p->next = r;
-            p = r;
-        }
-    }
-    return beg;
-}
-list* vst(list*& beg, int k, int z)
-{
-    list* p = beg;
-    list* r;
-    while (p != NULL)
-    {
-        if (p->info == k)
-        {
-            r = new(list);
-            r->info = z;
-            r->next = p->next;
-            p->next = r;
-            p = p->next;
-        }
-        else
-        {
-            p = p->next;
-        }
-    }
-    return beg;
-}
-void print(list* beg)
-{
-    list* p = beg;
-    while (p != NULL)
-    {
-        cout << "\nElement:" << p->info << " ";
-        p = p->next;
-    }
-}
-int findmin(list* beg)
-{
-    list* p = beg;
-    int m = p->info;
-    while (p != NULL)
-    {
-        if (p->info < m)
-            m = p->info;
-        p = p->next;
-    }
-    return m;
-}
-int sumdig(int x)
-{
-    int s = 0;
-    while (x != 0)
-    {
-        s += s % 10;
-        x /= 10;
-    }
-    return s;
-}
-int main()
-{
-    setlocale(LC_ALL, "RU");
-    list* beg = make_list();
-    list* p = beg;
-    int m = findmin(beg);
-    cout << "Старый список: " << endl;
-    print(beg);
-    while (p != NULL)
-    {
-        if (sumdig(p->info) % 2 == 0)
-        {
-            vst(beg, p->info, m);
-            p = p->next->next;
-        }
-        else p = p->next;
-    }
-    cout << "Новый список: " << endl;
-    print(beg);
-}
+//1. Вставить минимальный элемент списка до каждого элемента с четной суммой цифр (функция – сумма цифр).
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* r, *p;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << "\n Element: " << p->info;
+//        p = p->next;
+//    }
+//}
+//int findmin(list* beg)
+//{
+//    list*p = beg;
+//    int m = p->info;
+//    while(p != NULL)
+//    {
+//        if (p->info < m)
+//            m = p->info;
+//        p = p->next;
+//    }
+//    return m;
+//}
+//int sumdig(int x)
+//{
+//    int s = 0;
+//    while (x != 0)
+//    {
+//        s += x % 10;
+//        x /= 10;
+//    }
+//    return s;
+//}
+//int main()
+//{
+//    setlocale(LC_ALL, "RU");
+//    list* beg = make_list();
+//    list* p = beg;
+//    int m = findmin(beg);
+//    while (p->next != NULL)
+//    {
+//        if (sumdig(p->next->info) % 2 == 0)
+//        {
+//            list* r = new(list);
+//            r->info = m;
+//            r->next = p->next;
+//            p->next = r;
+//            p = p->next;
+//        }
+//        p = p->next;
+//    }
+//    print(beg);
+//}
+//2. Удалить из списка все простые элементы.
+//#include <iostream>
+//using namespace std;
+//
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//
+//// Функция создания списка
+//list* make_list()
+//{
+//    list* beg = NULL;
+//    list* p = NULL;
+//    int x;
+//    
+//    cout << "Введите числа (0 для окончания ввода): ";
+//    cin >> x;
+//    
+//    if (x == 0) return NULL;  // если сразу 0 - список пуст
+//    
+//    // Создаем первый элемент
+//    beg = new list;
+//    beg->info = x;
+//    beg->next = NULL;
+//    p = beg;
+//    
+//    // Читаем остальные числа
+//    while (true)
+//    {
+//        cin >> x;
+//        if (x == 0) break;
+//        
+//        list* r = new list;
+//        r->info = x;
+//        r->next = NULL;
+//        p->next = r;
+//        p = r;
+//    }
+//    
+//    return beg;
+//}
+//
+//// Функция вывода списка
+//void print(list* beg)
+//{
+//    if (beg == NULL)
+//    {
+//        cout << "Список пуст!" << endl;
+//        return;
+//    }
+//    
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << p->info << " ";
+//        p = p->next;
+//    }
+//    cout << endl;
+//}
+//
+//// Проверка на простое число
+//int pr(int x)
+//{
+//    if (x <= 1) return 0;
+//    for (int i = 2; i < x; i++)
+//    {
+//        if (x % i == 0)
+//            return 0;
+//    }
+//    return 1;
+//}
+//
+//// Удаление простых чисел
+//void del(list* &beg)
+//{
+//    if (beg == NULL) return;
+//    
+//    list* cur = beg;
+//    list* prev = NULL;
+//    
+//    while (cur != NULL)
+//    {
+//        list* next_el = cur->next;
+//        
+//        if (pr(cur->info) == 1)  // если простое
+//        {
+//            if (prev == NULL)  // удаляем первый
+//            {
+//                beg = cur->next;
+//                delete cur;
+//            }
+//            else  // удаляем не первый
+//            {
+//                prev->next = cur->next;
+//                delete cur;
+//            }
+//        }
+//        else  // не простое
+//        {
+//            prev = cur;
+//        }
+//        
+//        cur = next_el;
+//    }
+//}
+//
+//int main()
+//{
+//    setlocale(LC_ALL, "RU");
+//    
+//    list* beg = make_list();
+//    
+//    cout << "Старый список: ";
+//    print(beg);
+//    
+//    del(beg);
+//    
+//    cout << "Новый список: ";
+//    print(beg);
+//    
+//    return 0;
+//}
+//3. Вставить между двумя совершенными элементами новый элемент со значением «11».
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* r, *p;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while ( p != NULL)
+//    {
+//        cout << "\n Element: " << p->info;
+//        p = p->next;
+//    }
+//}
+//list* vst(list* &beg, int k, int z)
+//{
+//    list* p = beg;
+//    list* r;
+//    while (p != NULL)
+//    {
+//        if (p->info == k)
+//        {
+//            r = new(list);
+//            r->info = z;
+//            if (p->next != NULL)
+//            {
+//                r->next = p->next;
+//                p->next = r;
+//            }
+//            else
+//            {
+//                r->next = NULL;
+//                p->next = r;
+//            }
+//        }
+//        p = p->next;
+//    }
+//    return beg;
+//}
+//int ab(int x)
+//{
+//    int s = 1;
+//    for (int i = 2; i < x; i++)
+//        if (x % i == 0) s+= i;
+//    return x == s;
+//}
+//int main()
+//{
+//    setlocale(LC_ALL, "RU");
+//    list* beg = make_list();
+//    list* p = beg;
+//    cout << "\nСтарый список: ";
+//    print(beg);
+//    while (p != NULL && p->next != NULL)
+//    {
+//        if (ab(p->info) && ab(p->next->info))
+//        {
+//            vst(beg, p->info, 11);
+//            p = p->next->next;
+//        }
+//        else p = p->next;
+//    }
+//    cout << "\nНовый список: ";
+//    print(beg);
+//}
+//4. Дан одномерный массив. Записать в однонаправленный список только те элементы массива, в записи которых ровно две «2». Затем из списка удалить все элементы, оканчивающиеся на 2.
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* p, *r;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << "\nElement: " << p->info;
+//        p = p->next;
+//    }
+//}
+//int counter(int x)
+//{
+//    int k = 0;
+//    while (x != 0)
+//    {
+//        if (x % 10 == 2)
+//            k++;
+//        x /= 10;
+//    }
+//    return k;
+//}
+//int main()
+//{
+//    setlocale (LC_ALL, "RU");
+//    list* beg = make_list();
+//    list* p =beg;
+//    cout << "\nСтарый список";
+//    print(beg);
+//    list* prev = NULL; //предыдуштй элемент
+//    while (p != NULL)
+//    {
+//        if (counter(p->info) != 2)
+//        {
+//            if (prev == NULL)//если это первый элемент
+//            {
+//                beg = p->next; // начало списка тепер не текущий а следующий
+//                delete p;// удаляем текущий
+//                p = beg;// теперь начинаем с нового элемента
+//            }
+//            else // если это не первый элемент
+//            {
+//                prev->next = p->next;// предыдущий теперь следующий
+//                delete p;// удаляем текущий
+//                p = prev->next;// текущий теперь следующий
+//            }
+//        }
+//        else // если не нужно удалить
+//        {
+//            prev = p;// текущий элемент стал предыдущим
+//            p = p->next;// следующий элемент теперь текущий
+//        }
+//    }
+//    cout << "\nСписок из элементов с двумя двойками в записи: ";
+//    print(beg);
+//    prev = NULL;
+//    p = beg;
+//    while(p != NULL)
+//    {
+//        if (p->info % 10 == 2)
+//        {
+//            if (prev == NULL)
+//            {
+//                beg = p->next;
+//                delete p;
+//                p = beg;
+//            }
+//            else{
+//                prev->next = p->next;
+//                delete p;
+//                p = prev->next;
+//            }
+//        }
+//        else
+//        {
+//            prev = p;
+//            p = p->next;
+//        }
+//    }
+//    cout << "\nСписок без элементов, оканчивающихся на 2";
+//    print(beg);
+//    
+//}
+//5. Дан однонаправленный список. Если в нем нет элементов, состоящих только из цифры 7 (функция), то построить другой однонаправленный список, включающий только те элементы, у которых ровно три цифры 7.
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* r, *p;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << "\nElement: " << p->info;
+//        p = p->next;
+//    }
+//}
+//bool seven(int x)
+//{
+//    while (x != 0)
+//    {
+//        if (x % 10 != 7)
+//            return false;
+//        x /= 10;
+//    }
+//    return true;
+//}
+//int counter(int x)
+//{
+//    int k = 0;
+//    while (x != 0)
+//    {
+//        if (x % 10 == 7) k++;
+//        x /= 10;
+//    }
+//    return k;
+//}
+//int main()
+//{
+//    setlocale(LC_ALL, "RU");
+//    list* beg = make_list();
+//    list* p = beg;
+//    list* new_beg = NULL;
+//    list* new_end = NULL;
+//    cout << "\nСтарый список:";
+//    print(beg);
+//    while (p != NULL)
+//    {
+//        if (!seven(p->info) && counter(p->info) == 3)
+//        {
+//            list* r = new(list);
+//            r->info = p->info;
+//            r->next = NULL;
+//            if (new_beg == NULL)
+//            {
+//                new_beg = r;
+//                new_end = r;
+//            }
+//            else
+//            {
+//                new_end->next = r;
+//                new_end = r;
+//            }
+//        }
+//        p = p->next;
+//    }
+//    cout << "\nНовый список:";
+//    print(new_beg);
+//}
+//6. Дан однонаправленный список. Построить одномерный массив, включающий только те элементы, у которых ровно три делителя кратных 5 (функция). Затем проверить массив на возрастание элементов.
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* r, *p;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << "\nElement: " << p->info;
+//        p = p->next;
+//    }
+//}
+//int del(int x)
+//{
+//    int k = 0;
+//    for (int i = 2; i < x; i++)
+//    {
+//        if (x % i == 0 && i % 5 == 0) k++;
+//    }
+//    return k;
+//}
+//bool sort(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL && p->next != NULL)
+//    {
+//        if (p->info > p->next->info) return false;
+//        p = p->next;
+//    }
+//    return true;
+//}
+//int main()
+//{
+//    setlocale(LC_ALL, "RU");
+//    list* beg = make_list();
+//    list* p = beg;
+//    cout << "\nСтарый список:";
+//    print(beg);
+//    list* new_end = NULL, *new_beg = NULL;
+//    while (p != NULL)
+//    {
+//        if (del(p->info) == 3)
+//        {
+//            list* r = new(list);
+//            r->info = p->info;
+//            r->next = NULL;
+//            if (new_beg == NULL)
+//            {
+//                new_beg = r;
+//                new_end = r;
+//            }
+//            else
+//            {
+//                new_end->next = r;
+//                new_end = r;
+//            }
+//        }
+//        p = p->next;
+//    }
+//    cout << "\nНовый список:";
+//    print(new_beg);
+//    if (sort(new_beg)) cout << "\nСписок возрастающий";
+//    else cout << "\nСписок не возратсает";
+//}
+//7. Дано два однонаправленных списка. Получить третий список, содержащий только положительные элементы исходных списков.
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* r, *p;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << "\nElement: " << p->info;
+//        p = p->next;
+//    }
+//}
+//int main()
+//{
+//    setlocale(LC_ALL, "RU");
+//    list* beg1 = make_list();
+//    list* beg2 = make_list();
+//    list* p1 = beg1, *p2 = beg2;
+//    cout << "\nСписок 1:";
+//    print(beg1);
+//    cout << "\nСписок 2:";
+//    print(beg2);
+//    list* new_beg = NULL, *new_end = NULL;
+//    while (p1 != NULL)
+//    {
+//        if (p1->info > 0)
+//        {
+//            list* r = new(list);
+//            r->info = p1->info;
+//            r->next = NULL;
+//            if (new_beg == NULL)
+//            {
+//                new_beg = r;
+//                new_end = r;
+//            }
+//            else
+//            {
+//                new_end->next = r;
+//                new_end = r;
+//            }
+//        }
+//        p1 = p1->next;
+//    }
+//    while (p2 != NULL)
+//    {
+//        if (p2->info > 0)
+//        {
+//            list* r = new(list);
+//            r->info = p2->info;
+//            r->next = NULL;
+//            if (new_beg == NULL)
+//            {
+//                new_beg = r;
+//                new_end = r;
+//            }
+//            else
+//            {
+//                new_end->next = r;
+//                new_end = r;
+//            }
+//        }
+//        p2 = p2->next;
+//    }
+//    cout << "\nНовый список:";
+//    print(new_beg);
+//}
+//8. Дано два однонаправленных, упорядоченных по возрастанию, списка. Получить третий список, также упорядоченный по возрастанию.
+//#include <iostream>
+//using namespace std;
+//struct list
+//{
+//    int info;
+//    list* next;
+//};
+//list* make_list()
+//{
+//    list* beg = new(list);
+//    list* r, *p;
+//    int x;
+//    cin >> x;
+//    beg->info = x;
+//    p = beg;
+//    while (x != 0)
+//    {
+//        cin >> x;
+//        if (x != 0)
+//        {
+//            r = new(list);
+//            r->info = x;
+//            r->next = NULL;
+//            p->next = r;
+//            p = r;
+//        }
+//    }
+//    return beg;
+//}
+//void print(list* beg)
+//{
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        cout << "\nElement: " << p->info;
+//        p = p->next;
+//    }
+//}
+//void sort(list* beg)
+//{
+//    if (beg == NULL || beg->next == NULL)
+//        return;
+//    int count = 0;
+//    list* p = beg;
+//    while (p != NULL)
+//    {
+//        count++;
+//        p = p->next;
+//    }
+//    int* arr = new int[count];
+//    p = beg;
+//    for (int i = 0; i < count; i++)
+//    {
+//        arr[i] = p->info;
+//        p = p->next;
+//    }
+//    for (int i = 0; i < count - 1; i++)
+//    {
+//        for (int j = 0; j < count - 1 - i; j++)
+//        {
+//            if (arr[j] > arr[j + 1])
+//            {
+//                int temp = arr[j];
+//                arr[j] = arr[j + 1];
+//                arr[j + 1] = temp;
+//            }
+//        }
+//    }
+//    p = beg;
+//    for (int i = 0; i < count; i++)
+//    {
+//        p->info = arr[i];
+//        p = p->next;
+//    }
+//    delete[] arr;
+//}
+//int main()
+//{
+//    list* beg1 = make_list();
+//    list* beg2 = make_list();
+//    list* p1 = beg1, *p2 = beg2;
+//    list* new_beg = NULL, *new_end = NULL;
+//    cout << "\nСписок 1:";
+//    print(beg1);
+//    cout << "\nСписок 2:";
+//    print(beg2);
+//    while (p1 != NULL)
+//    {
+//        list* r = new(list);
+//        r->info = p1->info;
+//        r->next = NULL;
+//        if (new_beg == NULL)
+//        {
+//            new_beg = r;
+//            new_end = r;
+//        }
+//        else
+//        {
+//            new_end->next = r;
+//            new_end = r;
+//        }
+//        p1 = p1->next;
+//    }
+//    while (p2 != NULL)
+//    {
+//        list* r = new(list);
+//        r->info = p2->info;
+//        r->next = NULL;
+//        if (new_beg == NULL)
+//        {
+//            new_beg = r;
+//            new_end = r;
+//        }
+//        else
+//        {
+//            new_end->next = r;
+//            new_end = r;
+//        }
+//        p2 = p2->next;
+//    }
+//    sort(new_beg);
+//    cout << "\nНовый список:";
+//    print(new_beg);
+//}
+   
+//1. Заменить все элементы списка, являющиеся числами Фибоначчи, количеством
+//отрицательных элементов списка.
+//2. Вставить элемент равный количеству некратных 3 элементов, после каждого
+//двузначного элемента.
+//3. Удалить из списка все двузначные и трехзначные элементы, не содержащие в своей
+//записи цифру «1».
+//4. Дан массив целых чисел. Построить однонаправленный список, содержащий только
+//непростые элементы массива.
+//5. Дан однонаправленный список. Если не знакочередующийся, то построить другой
+//однонаправленный список, включающий только отрицательные элементы с четным
+//количеством цифр, а затем проверить его на знакочередование.
+//6. Дан однонаправленный список вещественных чисел. Записать в одномерный массив
+//только те элементы списка, которые имеют одну цифру после запятой.
+//7. Дано два однонаправленных списка. Получить третий список, содержащий четные
+//элементы первого списка, не входящие во второй список.
+//8. Дано два однонаправленных списка. Получить третий список, содержащий все
+//различные числа исходных списков (удаление элементов не использовать).
