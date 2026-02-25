@@ -2239,10 +2239,169 @@
 //    print(new_beg);
 //}
    
-//1. Заменить все элементы списка, являющиеся числами Фибоначчи, количеством
-//отрицательных элементов списка.
-//2. Вставить элемент равный количеству некратных 3 элементов, после каждого
-//двузначного элемента.
+//1. Заменить все элементы списка, являющиеся числами Фибоначчи, количеством отрицательных элементов списка.
+// #include <iostream>
+// using namespace std;
+// struct list
+// {
+// 	int info;
+// 	list* next;
+// };
+// list* make_list()
+// {
+// 	list* beg = new(list);
+// 	list* r, * p;
+// 	int x;
+// 	cin >> x;
+// 	beg->info = x;
+// 	p = beg;
+// 	while (x != 0)
+// 	{
+// 		cin >> x;
+// 		if (x != 0)
+// 		{
+// 			r = new(list);
+// 			r->info = x;
+// 			r->next = NULL;
+// 			p->next = r;
+// 			p = r;
+// 		}
+// 	}
+// 	return beg;
+// }
+// void print(list* beg)
+// {
+// 	list* p = beg;
+// 	while (p != NULL)
+// 	{
+// 		cout << "\nElement:" << p->info;
+// 		p = p->next;
+// 	}
+// }
+// bool fib(int x)
+// {
+// 	int s = 0;
+// 	if (x < 0) return false;
+// 	if (x == 0 || x == 1) return true;
+// 	int a = 0, b = 1, c = 1;
+// 	while (c < x)
+// 	{
+// 		c = a + b;
+// 		a = b;
+// 		b = c;
+// 	}
+// 	return (c == x);
+// }
+// int counter(list* beg)
+// {
+// 	int k = 0;
+// 	list* p = beg;
+// 	while (p != NULL)
+// 	{
+// 		if (p->info < 0)
+// 			k++;
+// 		p = p->next;
+// 	}
+// 	return k;
+// }
+// int main()
+// {
+// 	setlocale(LC_ALL, "RU");
+// 	list* beg = make_list();
+// 	list* p = beg;
+// 	cout << "\nСтарый список:";
+// 	print(beg);
+// 	int changing = counter(beg);
+// 	while (p != NULL)
+// 	{
+// 		if (fib(p->info))
+// 			p->info = changing;
+// 		p = p->next;
+// 	}
+// 	cout << "\nНовый список:";
+// 	print(beg);
+// }
+//ФУНКЦИЯ ДЛЯ НОВОГО СПИСКА
+// list* make_newlist(list* beg)
+// {
+//    list* beg2 = new(list);
+//    list* t = beg, *r = NULL;
+//    while (t != NULL)
+//       {
+//          if (условие соблюдается)
+//          {
+//             list* p = new(list);
+//             p->info = t->info;
+//             p-> next = NULL;
+//             if (r != NULL)
+//                r->next = p;
+//             else
+//                beg2 = p;
+//          }
+//            t = t->next;
+//       }
+//    return beg2;
+// }
+//2. Вставить элемент равный количеству некратных 3 элементов, после каждого двузначного элемента.
+#include <iostream>
+using namespace std;
+struct list
+{
+	int info;
+	list* next;
+};
+list* make_list()
+{
+	list* beg = new(list);
+	list* p, * r;
+	int x;
+	cin >> x;
+	beg->info = x;
+	p = beg;
+	while (x != 0)
+	{
+		cin >> x;
+		if (x != 0)
+		{
+			r = new(list);
+			r->info = x;
+			r->next = NULL;
+			p->next = r;
+			p = r;
+		}
+	}
+	return beg;
+}
+void print(list* beg)
+{
+	list* p = beg;
+	while (p != NULL)
+	{
+		cout << "\nElement: " << p->info;
+		p = p->next;
+	}
+}
+int counter(list* beg)
+{
+	int k = 0;
+	list* p = beg;
+	while (p != NULL)
+	{
+		if (p->info % 3 != 0) k++;
+		p = p->next;
+	}
+	return k;
+}
+list* vst(list* &)
+int main()
+{
+	list* beg = make_list();
+	list* p = beg;
+	while (p != NULL)
+	{
+		if 
+	}
+}
 //3. Удалить из списка все двузначные и трехзначные элементы, не содержащие в своей
 //записи цифру «1».
 //4. Дан массив целых чисел. Построить однонаправленный список, содержащий только
