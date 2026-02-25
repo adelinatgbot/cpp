@@ -1529,31 +1529,31 @@
 //    list* beg = NULL;
 //    list* p = NULL;
 //    int x;
-//    
+//
 //    cout << "Введите числа (0 для окончания ввода): ";
 //    cin >> x;
-//    
+//
 //    if (x == 0) return NULL;  // если сразу 0 - список пуст
-//    
+//
 //    // Создаем первый элемент
 //    beg = new list;
 //    beg->info = x;
 //    beg->next = NULL;
 //    p = beg;
-//    
+//
 //    // Читаем остальные числа
 //    while (true)
 //    {
 //        cin >> x;
 //        if (x == 0) break;
-//        
+//
 //        list* r = new list;
 //        r->info = x;
 //        r->next = NULL;
 //        p->next = r;
 //        p = r;
 //    }
-//    
+//
 //    return beg;
 //}
 //
@@ -1565,7 +1565,7 @@
 //        cout << "Список пуст!" << endl;
 //        return;
 //    }
-//    
+//
 //    list* p = beg;
 //    while (p != NULL)
 //    {
@@ -1591,14 +1591,14 @@
 //void del(list* &beg)
 //{
 //    if (beg == NULL) return;
-//    
+//
 //    list* cur = beg;
 //    list* prev = NULL;
-//    
+//
 //    while (cur != NULL)
 //    {
 //        list* next_el = cur->next;
-//        
+//
 //        if (pr(cur->info) == 1)  // если простое
 //        {
 //            if (prev == NULL)  // удаляем первый
@@ -1616,7 +1616,7 @@
 //        {
 //            prev = cur;
 //        }
-//        
+//
 //        cur = next_el;
 //    }
 //}
@@ -1624,17 +1624,17 @@
 //int main()
 //{
 //    setlocale(LC_ALL, "RU");
-//    
+//
 //    list* beg = make_list();
-//    
+//
 //    cout << "Старый список: ";
 //    print(beg);
-//    
+//
 //    del(beg);
-//    
+//
 //    cout << "Новый список: ";
 //    print(beg);
-//    
+//
 //    return 0;
 //}
 //3. Вставить между двумя совершенными элементами новый элемент со значением «11».
@@ -1836,7 +1836,7 @@
 //    }
 //    cout << "\nСписок без элементов, оканчивающихся на 2";
 //    print(beg);
-//    
+//
 //}
 //5. Дан однонаправленный список. Если в нем нет элементов, состоящих только из цифры 7 (функция), то построить другой однонаправленный список, включающий только те элементы, у которых ровно три цифры 7.
 //#include <iostream>
@@ -2244,82 +2244,82 @@
 // using namespace std;
 // struct list
 // {
-// 	int info;
-// 	list* next;
+//     int info;
+//     list* next;
 // };
 // list* make_list()
 // {
-// 	list* beg = new(list);
-// 	list* r, * p;
-// 	int x;
-// 	cin >> x;
-// 	beg->info = x;
-// 	p = beg;
-// 	while (x != 0)
-// 	{
-// 		cin >> x;
-// 		if (x != 0)
-// 		{
-// 			r = new(list);
-// 			r->info = x;
-// 			r->next = NULL;
-// 			p->next = r;
-// 			p = r;
-// 		}
-// 	}
-// 	return beg;
+//     list* beg = new(list);
+//     list* r, * p;
+//     int x;
+//     cin >> x;
+//     beg->info = x;
+//     p = beg;
+//     while (x != 0)
+//     {
+//         cin >> x;
+//         if (x != 0)
+//         {
+//             r = new(list);
+//             r->info = x;
+//             r->next = NULL;
+//             p->next = r;
+//             p = r;
+//         }
+//     }
+//     return beg;
 // }
 // void print(list* beg)
 // {
-// 	list* p = beg;
-// 	while (p != NULL)
-// 	{
-// 		cout << "\nElement:" << p->info;
-// 		p = p->next;
-// 	}
+//     list* p = beg;
+//     while (p != NULL)
+//     {
+//         cout << "\nElement:" << p->info;
+//         p = p->next;
+//     }
 // }
 // bool fib(int x)
 // {
-// 	int s = 0;
-// 	if (x < 0) return false;
-// 	if (x == 0 || x == 1) return true;
-// 	int a = 0, b = 1, c = 1;
-// 	while (c < x)
-// 	{
-// 		c = a + b;
-// 		a = b;
-// 		b = c;
-// 	}
-// 	return (c == x);
+//     int s = 0;
+//     if (x < 0) return false;
+//     if (x == 0 || x == 1) return true;
+//     int a = 0, b = 1, c = 1;
+//     while (c < x)
+//     {
+//         c = a + b;
+//         a = b;
+//         b = c;
+//     }
+//     return (c == x);
 // }
 // int counter(list* beg)
 // {
-// 	int k = 0;
-// 	list* p = beg;
-// 	while (p != NULL)
-// 	{
-// 		if (p->info < 0)
-// 			k++;
-// 		p = p->next;
-// 	}
-// 	return k;
+//     int k = 0;
+//     list* p = beg;
+//     while (p != NULL)
+//     {
+//         if (p->info < 0)
+//             k++;
+//         p = p->next;
+//     }
+//     return k;
 // }
 // int main()
 // {
-// 	setlocale(LC_ALL, "RU");
-// 	list* beg = make_list();
-// 	list* p = beg;
-// 	cout << "\nСтарый список:";
-// 	print(beg);
-// 	int changing = counter(beg);
-// 	while (p != NULL)
-// 	{
-// 		if (fib(p->info))
-// 			p->info = changing;
-// 		p = p->next;
-// 	}
-// 	cout << "\nНовый список:";
-// 	print(beg);
+//     setlocale(LC_ALL, "RU");
+//     list* beg = make_list();
+//     list* p = beg;
+//     cout << "\nСтарый список:";
+//     print(beg);
+//     int changing = counter(beg);
+//     while (p != NULL)
+//     {
+//         if (fib(p->info))
+//             p->info = changing;
+//         p = p->next;
+//     }
+//     cout << "\nНовый список:";
+//     print(beg);
 // }
 //ФУНКЦИЯ ДЛЯ НОВОГО СПИСКА
 // list* make_newlist(list* beg)
@@ -2347,60 +2347,95 @@
 using namespace std;
 struct list
 {
-	int info;
-	list* next;
+    int info;
+    list* next;
 };
 list* make_list()
 {
-	list* beg = new(list);
-	list* p, * r;
-	int x;
-	cin >> x;
-	beg->info = x;
-	p = beg;
-	while (x != 0)
-	{
-		cin >> x;
-		if (x != 0)
-		{
-			r = new(list);
-			r->info = x;
-			r->next = NULL;
-			p->next = r;
-			p = r;
-		}
-	}
-	return beg;
+    list* beg = new(list);
+    list* p, * r;
+    int x;
+    cin >> x;
+    beg->info = x;
+    p = beg;
+    while (x != 0)
+    {
+        cin >> x;
+        if (x != 0)
+        {
+            r = new(list);
+            r->info = x;
+            r->next = NULL;
+            p->next = r;
+            p = r;
+        }
+    }
+    return beg;
 }
 void print(list* beg)
 {
-	list* p = beg;
-	while (p != NULL)
-	{
-		cout << "\nElement: " << p->info;
-		p = p->next;
-	}
+    list* p = beg;
+    while (p != NULL)
+    {
+        cout << "\nElement: " << p->info;
+        p = p->next;
+    }
 }
 int counter(list* beg)
 {
-	int k = 0;
-	list* p = beg;
-	while (p != NULL)
-	{
-		if (p->info % 3 != 0) k++;
-		p = p->next;
-	}
-	return k;
+    int k = 0;
+    list* p = beg;
+    while (p != NULL)
+    {
+        if (p->info % 3 != 0) k++;
+        p = p->next;
+    }
+    return k;
 }
-list* vst(list* &)
+list* vst(list* &beg, int k, int z)
+{
+    list* p = beg;
+    list* r;
+    while (p != NULL)
+    {
+        if (p->info == k)
+        {
+            r = new(list);
+            r->info = z;
+            if (p->next != NULL)
+            {
+                r->next = p->next;
+                p->next = r;
+            }
+            else
+            {
+                r->next = NULL;
+                p->next = r;
+            }
+        }
+        p = p->next;
+    }
+    return beg;
+}
 int main()
 {
-	list* beg = make_list();
-	list* p = beg;
-	while (p != NULL)
-	{
-		if 
-	}
+    setlocale(LC_ALL, "RU");
+    list* beg = make_list();
+    list* p = beg;
+    cout << "\nСтарый список:";
+    print(beg);
+    int into = counter(beg);
+    while (p != NULL && p->next != NULL)
+    {
+        if (p->info % 100 == 0 && p->info / 10 != 0)
+        {
+            vst(beg, p->info, into);
+            p = p->next->next;
+        }
+        else p = p->next;
+    }
+    cout << "\nНовый список:";
+    print(beg);
 }
 //3. Удалить из списка все двузначные и трехзначные элементы, не содержащие в своей
 //записи цифру «1».
